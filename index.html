@@ -20,6 +20,8 @@
 			
 			function init() {
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.sortObjects = false;
+				renderer.setClearColor( 0xeef8fc );
 				document.body.appendChild( renderer.domElement );
 				
 				var loader= new THREE.JSONLoader();
