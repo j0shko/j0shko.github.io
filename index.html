@@ -25,11 +25,9 @@
 				renderer.setClearColor( 0xeef8fc );
 				document.body.appendChild( renderer.domElement );
 				
-				scene.fog = new THREE.Fog(0xdedede, 1, 1000);
-				
 				var loader= new THREE.JSONLoader();
 				loader.load( 'cube.json', function(geometry) {
-					mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
+					mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x00ff00 } ) );
 					scene.add( mesh );
 					
 					console.log("Loaded mesh successfully");
