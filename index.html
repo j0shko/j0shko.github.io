@@ -26,7 +26,7 @@
 				
 				var loader= new THREE.JSONLoader();
 				loader.load( 'cube.json', function(geometry) {
-					var mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
+					var mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
 					scene.add( mesh );
 					
 					console.log("Loaded mesh successfully");
