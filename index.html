@@ -25,9 +25,16 @@
 				renderer.setClearColor( 0xeef8fc );
 				document.body.appendChild( renderer.domElement );
 				
+				var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+				scene.add( light );
+				
+				var light = new THREE.PointLight( 0xff0000, 1, 100 );
+				light.position.set( 50, 50, 50 );
+				scene.add( light );
+				
 				var loader= new THREE.JSONLoader();
 				loader.load( 'cube.json', function(geometry) {
-					mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x00ff00 } ) );
+					mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30 } ) );
 					scene.add( mesh );
 					
 					console.log("Loaded mesh successfully");
