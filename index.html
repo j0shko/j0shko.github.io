@@ -26,7 +26,7 @@
 				
 				var loader= new THREE.JSONLoader();
 				loader.load( 'shape.json', function(geometry) {
-					var mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial() );
+					var mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0x00f00} ) );
 					scene.add( mesh );
 				})
 				
