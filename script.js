@@ -33,10 +33,10 @@ function init() {
 		}
 		geometry.morphTargets.push({ name: "fullScale", vertices: vertices });
 		
-		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30 } ) );
+		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30, morphTargets: true } ) );
 		scene.add( mesh );
 		console.log("Loaded mesh successfully");
-	
+		
 		//mesh.updateMorphTargets();
 		//mesh.morphTargetBase = 0;
 		//mesh.morphTargetInfluences[1] = 1;
@@ -57,6 +57,7 @@ function animate() {
 	if (mesh !== undefined) {
 		mesh.rotation.x += 0.001;
 		mesh.rotation.y += 0.01;
+		console.log(mesh.morphTargetInfluences[1]);
 	}
 	
 	renderer.render(scene, camera);
