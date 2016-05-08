@@ -15,9 +15,24 @@
 				overflow: hidden;
 			}
 			/*canvas { width: 100%; height: 100%; }*/
+			#ctrl {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 200px;
+				color: #ffffff;
+				padding: 5px;
+				font-size: 13px;
+				z-index: 100;
+			}
 		</style>
 	</head>
 	<body>
+		<div id="ctrl">
+			<input type="range" value="0" min="0" max="1000" onchange="mesh.morphTargetInfluences[1] = this.value/100;">
+			<input type="range" value="0" min="0" max="1000" onchange="mesh.morphTargetInfluences[2] = this.value/100;">
+			<input type="range" value="0" min="0" max="1000" onchange="mesh.morphTargetInfluences[3] = this.value/100;">
+		</div>		
 		<script src="three.js"></script>
 		<script>
 			var scene = new THREE.Scene();
@@ -51,10 +66,10 @@
 					scene.add( mesh );
 					console.log("Loaded mesh successfully");
 				
-					mesh.updateMorphTargets();
-					mesh.morphTargetBase = 0;
-					mesh.morphTargetInfluences[1] = 1;
-					mesh.morphTargetInfluences[2] = 0.5;
+					//mesh.updateMorphTargets();
+					//mesh.morphTargetBase = 0;
+					//mesh.morphTargetInfluences[1] = 1;
+					//mesh.morphTargetInfluences[2] = 0.5;
 				})
 				
 				geometry = new THREE.BoxGeometry( 1, 1, 1 );
