@@ -30,7 +30,7 @@ function init() {
 		console.log("Loaded mesh successfully");
 		
 		//mesh.updateMorphTargets();
-		//mesh.morphTargetBase = 0;
+		mesh.morphTargetBase = 0;
 		//mesh.morphTargetInfluences[1] = 1;
 		//mesh.morphTargetInfluences[2] = 0.5;
 	})
@@ -49,7 +49,6 @@ function animate() {
 	if (mesh !== undefined) {
 		mesh.rotation.x += 0.001;
 		mesh.rotation.y += 0.01;
-		console.log(mesh.morphTargetInfluences[1]);
 	}
 	
 	renderer.render(scene, camera);
