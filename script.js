@@ -25,12 +25,13 @@ function init() {
 	
 	var loader= new THREE.JSONLoader();
 	loader.load( 'cube.json', function(geometry) {
+		geometry.vertices = mesh.morphTargets[0].vertices;
 		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30, morphTargets: true } ) );
 		scene.add( mesh );
 		console.log("Loaded mesh successfully");
 		
 		//mesh.updateMorphTargets();
-		mesh.morphTargetBase = 0;
+		//mesh.morphTargetBase = 0;
 		//mesh.morphTargetInfluences[1] = 1;
 		//mesh.morphTargetInfluences[2] = 0.5;
 	})
