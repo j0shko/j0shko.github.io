@@ -61,7 +61,7 @@
 				scene.add( pointLight );
 				
 				var loader= new THREE.JSONLoader();
-				loader.load( 'cube.json', function(geometry) {
+				loader.load( 'fase.json', function(geometry) {
 					mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30 } ) );
 					scene.add( mesh );
 					console.log("Loaded mesh successfully");
