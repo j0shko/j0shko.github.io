@@ -30,8 +30,8 @@ function init() {
 		textureLoader.load('diffuse.png', function(texture) {
 			material = new THREE.MeshBasicMaterial( { map: texture } );
 			mesh = new THREE.Mesh( geometry, material );
+			scene.add( mesh );
 		});
-		scene.add( mesh );
 		console.log("Loaded mesh successfully");
 		
 		//mesh.updateMorphTargets();
