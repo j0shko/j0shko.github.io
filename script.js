@@ -28,7 +28,7 @@ function init() {
 		//geometry.vertices = geometry.morphTargets[0].vertices;
 		var textureLoader = new THREE.TextureLoader();
 		textureLoader.load('diffuse.png', function(texture) {
-			material = new THREE.MeshPhongMaterial( { map: texture, shininess: 5 } );
+			material = new THREE.MeshPhongMaterial( { map: texture, shininess: 5, morphTargets: true } );
 			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 		});
