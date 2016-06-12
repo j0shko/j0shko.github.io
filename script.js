@@ -28,7 +28,7 @@ function init() {
 		//geometry.vertices = geometry.morphTargets[0].vertices;
 		var textureLoader = new THREE.TextureLoader();
 		textureLoader.load('diffuse.png', function(texture) {
-			material = new THREE.MeshBasicMaterial( { map: texture } );
+			material = new THREE.MeshPhongMaterial( { map: texture, shininess: 5 } );
 			mesh = new THREE.Mesh( geometry, material );
 			scene.add( mesh );
 		});
@@ -53,7 +53,7 @@ function animate() {
 	
 	if (mesh !== undefined) {
 		//mesh.rotation.x += 0.001;
-		mesh.rotation.y += 0.01;
+		mesh.rotation.y += 0.001;
 	}
 	
 	renderer.render(scene, camera);
