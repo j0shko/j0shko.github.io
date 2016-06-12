@@ -26,7 +26,7 @@ function init() {
 	var loader= new THREE.JSONLoader();
 	loader.load( 'head.json', function(geometry) {
 		geometry.vertices = geometry.morphTargets[0].vertices;
-		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x2194ce, specular: 0x111111, shininess: 30, morphTargets: true } ) );
+		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('diffuse.png'), morphTargets: true } ) );
 		scene.add( mesh );
 		console.log("Loaded mesh successfully");
 		
@@ -48,8 +48,8 @@ function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		mesh.rotation.x += 0.001;
-		//mesh.rotation.y += 0.01;
+		//mesh.rotation.x += 0.001;
+		mesh.rotation.y += 0.01;
 	}
 	
 	renderer.render(scene, camera);
