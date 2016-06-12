@@ -25,8 +25,8 @@ function init() {
 	
 	var loader= new THREE.JSONLoader();
 	loader.load( 'head.json', function(geometry) {
-		geometry.vertices = geometry.morphTargets[0].vertices;
-		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('diffuse.png'), morphTargets: true } ) );
+		//geometry.vertices = geometry.morphTargets[0].vertices;
+		mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('diffuse.png') } ) );
 		scene.add( mesh );
 		console.log("Loaded mesh successfully");
 		
