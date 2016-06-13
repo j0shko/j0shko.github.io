@@ -81,6 +81,7 @@ function animate() {
 			if (value <= 0) {
 				if (letterBuffer.length > 0) {
 					newRising = letterBuffer.shift();
+					fallingLetter = undefined;
 				} else {
 					newRising = undefined;
 				}
