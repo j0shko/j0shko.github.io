@@ -22,7 +22,7 @@ function init() {
 	scene.add( light );
 	
 	var pointLight = new THREE.PointLight( 0xeef8fc, 1, 100 );
-	pointLight.position.set( , 4, 4 );
+	pointLight.position.set( 1, 4, 4 );
 	scene.add( pointLight );
 	
 	var loader= new THREE.JSONLoader();
