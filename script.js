@@ -46,8 +46,10 @@ var risingLetter;
 
 var letterBuffer = [];
 
-function setLetter() {
-	letterBuffer.unshift(arguments);
+function setLetter(letters) {
+	for (i = 0; i < letters.length; i++) {
+		letterBuffer.unshift(letters[i]);
+	}
 	risingLetter = letterBuffer.shift();
 }
 
