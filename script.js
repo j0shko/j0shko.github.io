@@ -47,6 +47,7 @@ var risingLetter;
 var letterBuffer = [];
 
 function setLetter(letters) {
+	console.log("Adding letters to buffer : " + letters);
 	for (i = 0; i < letters.length; i++) {
 		letterBuffer.unshift(letters[i]);
 	}
@@ -57,6 +58,9 @@ function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
+		console.log("Letter buffer : " + letterBuffer);
+		console.log("Rising letter : " + risingLetter);
+		console.log("Falling letter : " + fallingLetter);
 		var newFalling = fallingLetter;
 		var newRising = risingLetter;
 		if (risingLetter !== undefined) {
