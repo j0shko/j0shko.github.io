@@ -47,7 +47,6 @@ var risingLetter;
 var letterBuffer = [];
 
 function setLetter() {
-	console.log("Adding letters to buffer : " + letters);
 	for (i = 0; i < arguments.length; i++) {
 		console.log("Adding letter to buffer : " + arguments[i]);
 		letterBuffer.unshift(arguments[i]);
