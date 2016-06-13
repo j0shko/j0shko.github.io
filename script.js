@@ -76,7 +76,7 @@ function animate() {
 					newRising = undefined;
 				}
 			} else {
-				mesh.morphTargetInfluences[risingLetter] += fplRatio;
+				mesh.morphTargetInfluences[risingLetter] -= fplRatio;
 			}
 		}
 		fallingLetter = newFalling;
