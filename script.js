@@ -58,9 +58,9 @@ function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		console.log("Letter buffer : " + letterBuffer);
-		console.log("Rising letter : " + risingLetter);
-		console.log("Falling letter : " + fallingLetter);
+		//console.log("Letter buffer : " + letterBuffer);
+		//console.log("Rising letter : " + risingLetter);
+		//console.log("Falling letter : " + fallingLetter);
 		var newFalling = fallingLetter;
 		var newRising = risingLetter;
 		if (risingLetter !== undefined) {
