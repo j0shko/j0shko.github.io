@@ -22,7 +22,7 @@ function init() {
 	scene.add( light );
 	
 	var pointLight = new THREE.PointLight( 0xeef8fc, 1, 100 );
-	pointLight.position.set( 2, 2, 4 );
+	pointLight.position.set( 1, 4, 4 );
 	scene.add( pointLight );
 	
 	var loader= new THREE.JSONLoader();
@@ -50,27 +50,20 @@ function setLetter() {
 	letterBuffer = [];
 	risingLetter = null;
 	fallingLetter = null;
+	
 	mesh.morphTargetInfluences[risingLetter] = 0;
 	mesh.morphTargetInfluences[fallingLetter] = 0;
+	
 	for (i = arguments.length - 1; i >= 0; i--) {
-		console.log("Adding letter to buffer : " + arguments[i]);
 		letterBuffer.unshift(arguments[i]);
 	}
-	console.log(letterBuffer);
 	risingLetter = letterBuffer.shift();
-	console.log("First letter " + risingLetter);
 }
 
 function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		if (risingLetter !== null) {
-			console.log("Rising letter - " + risingLetter + " : " + mesh.morphTargetInfluences[risingLetter]);
-		}
-		if (fallingLetter !== null) {
-			console.log("Falling letter - " + fallingLetter + " : " + mesh.morphTargetInfluences[fallingLetter]);
-		}
 		if (risingLetter !== null) {
 			var value = mesh.morphTargetInfluences[risingLetter];
 			if (value >= 1) {
@@ -80,6 +73,7 @@ function animate() {
 					risingLetter = letterBuffer.shift();
 					mesh.morphTargetInfluences[risingLetter] +=fplRatio;
 				} else {
+					morphTargetInfluences[risingLetter] = 0;
 					risingLetter = null;
 				}
 				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
