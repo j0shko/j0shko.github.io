@@ -70,6 +70,7 @@ function animate() {
 			console.log("Rising letter - " + risingLetter + " : " + value);
 			if (value >= 1) {
 				newFalling = risingLetter;
+				newRising = undefined;
 			} else {
 				mesh.morphTargetInfluences[risingLetter] += fplRatio;
 			}
