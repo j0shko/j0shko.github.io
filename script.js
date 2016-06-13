@@ -25,7 +25,6 @@ function init() {
 	
 	var loader= new THREE.JSONLoader();
 	loader.load( 'head.json', function(geometry) {
-		//geometry.vertices = geometry.morphTargets[0].vertices;
 		var textureLoader = new THREE.TextureLoader();
 		textureLoader.load('diffuse.png', function(texture) {
 			material = new THREE.MeshPhongMaterial( { map: texture, shininess: 5, morphTargets: true } );
@@ -33,15 +32,7 @@ function init() {
 			scene.add( mesh );
 		});
 		console.log("Loaded mesh successfully");
-		
-		//mesh.updateMorphTargets();
-		//mesh.morphTargetBase = 0;
-		//mesh.morphTargetInfluences[1] = 1;
-		//mesh.morphTargetInfluences[2] = 0.5;
 	})
-	
-	geometry = new THREE.BoxGeometry( 1, 1, 1 );
-	console.log(geometry.vertices);
 	
 	camera.position.z = 5;
 	
