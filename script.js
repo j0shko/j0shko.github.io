@@ -3,6 +3,8 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 var renderer = new THREE.WebGLRenderer( { antialias: true } );
 var mesh;
 
+var fplRatio = 0.2;
+
 init();
 animate();
 
@@ -39,12 +41,36 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
+var currentLetter;
+var currentLetterRise;
+var nextLetter;
+
+var letterBuffer = [];
+
+function setLetter(a) {
+	currentLetter = a;
+}
+
 function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		//mesh.rotation.x += 0.001;
-		mesh.rotation.y += 0.001;
+		if (currentLetter !== undefined) {
+			var currentLetterValue = mesh.morphTargetInfluences[currentLetter];
+			if (currentLetterValue <= 0 && currentLetterRise === false) {
+				currentLetter = undefined;
+			} else {
+				if (currentLetterValue >= 1) {
+					currentLetterRise = false;
+				}
+				var change = fplRatio;
+				if (currentLetterRise === false) {
+					change *= -1; 
+				}
+				currentLetterValue += change;
+				mesh.morphTargetInfluences[currentLetter] = currentLetterValue;
+			}
+		}
 	}
 	
 	renderer.render(scene, camera);
