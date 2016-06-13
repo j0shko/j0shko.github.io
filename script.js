@@ -22,7 +22,7 @@ function init() {
 	scene.add( light );
 	
 	var pointLight = new THREE.PointLight( 0xeef8fc, 1, 100 );
-	pointLight.position.set( 1, 4, 4 );
+	pointLight.position.set( , 4, 4 );
 	scene.add( pointLight );
 	
 	var loader= new THREE.JSONLoader();
@@ -73,7 +73,7 @@ function animate() {
 					risingLetter = letterBuffer.shift();
 					mesh.morphTargetInfluences[risingLetter] +=fplRatio;
 				} else {
-					morphTargetInfluences[risingLetter] = 0;
+					mesh.morphTargetInfluences[risingLetter] = 0;
 					risingLetter = null;
 				}
 				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
@@ -86,6 +86,7 @@ function animate() {
 		} else if (fallingLetter !== null) {
 			var value = mesh.morphTargetInfluences[fallingLetter];
 			if (value <= 0) {
+				mesh.morphTargetInfluences[fallingLetter] = 0;
 				fallingLetter = null;
 			} else {
 				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
