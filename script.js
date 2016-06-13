@@ -47,12 +47,13 @@ var risingLetter;
 var letterBuffer = [];
 
 function setLetter() {
-	for (i = 0; i < arguments.length; i++) {
+	for (i = arguments.length - 1; i >= 0; i--) {
 		console.log("Adding letter to buffer : " + arguments[i]);
 		letterBuffer.unshift(arguments[i]);
 	}
 	console.log(letterBuffer);
 	risingLetter = letterBuffer.shift();
+	fallingLetter = undefined;
 	console.log("First letter " + risingLetter);
 }
 
@@ -60,57 +61,37 @@ function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		//console.log("Letter buffer : " + letterBuffer);
-		//console.log("Rising letter : " + risingLetter);
-		//console.log("Falling letter : " + fallingLetter);
-		var newFalling = fallingLetter;
-		var newRising = risingLetter;
+		if (risingLetter !== undefined) {
+			console.log("Rising letter - " + risingLetter + " : " + mesh.morphTargetInfluences[risingLetter]);
+		}
+		if (fallingLetter !== undefined) {
+			console.log("Falling letter - " + fallingLetter + " : " + mesh.morphTargetInfluences[fallingLetter]);
+		}
 		if (risingLetter !== undefined) {
 			var value = mesh.morphTargetInfluences[risingLetter];
-			console.log("Rising letter - " + risingLetter + " : " + value);
 			if (value >= 1) {
-				newFalling = risingLetter;
-				newRising = undefined;
+				fallingLetter = risingLetter;
+				if (letterBuffer.length > 0) {
+					risingLetter = letterBuffer.shift();
+					mesh.morphTargetInfluences[risingLetter] +=fplRatio;
+				} else {
+					risingLetter = undefined;
+				}
+				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
 			} else {
-				mesh.morphTargetInfluences[risingLetter] += fplRatio;
+				mesh.morphTargetInfluences[risingLetter] += fplRatio;	
+				if (fallingLetter !== undefined) {
+					mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
+				}
 			}
-		}
-		if (fallingLetter !== undefined) {
+		} else if (fallingLetter !== undefined) {
 			var value = mesh.morphTargetInfluences[fallingLetter];
-			console.log("Falling letter - " + fallingLetter + " : " + value);
 			if (value <= 0) {
 				fallingLetter = undefined;
-				if (letterBuffer.length > 0) {
-					newRising = letterBuffer.shift();
-				} else {
-					newRising = undefined;
-				}
 			} else {
-				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
+				mesh.morphTargetInfluences -= fplRatio;
 			}
 		}
-		fallingLetter = newFalling;
-		risingLetter = newRising;
-		/*
-		if (fallingLetter !== undefined) {
-			var currentLetterValue = mesh.morphTargetInfluences[currentLetter];
-			console.log("Rising letter - " + currentLetter + " : " + currentLetterValue);
-			if (currentLetterValue <= 0 && currentLetterRise === false) {
-				currentLetter = undefined;
-				
-			} else {
-				if (currentLetterValue >= 1) {
-					currentLetterRise = false;
-				}
-				var change = fplRatio;
-				if (currentLetterRise === false) {
-					change *= -1; 
-				}
-				currentLetterValue += change;
-				mesh.morphTargetInfluences[currentLetter] = currentLetterValue;
-			}
-		}
-		*/
 	}
 	
 	renderer.render(scene, camera);
