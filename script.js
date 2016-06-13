@@ -79,9 +79,9 @@ function animate() {
 			var value = mesh.morphTargetInfluences[fallingLetter];
 			console.log("Falling letter - " + fallingLetter + " : " + value);
 			if (value <= 0) {
+				fallingLetter = undefined;
 				if (letterBuffer.length > 0) {
 					newRising = letterBuffer.shift();
-					fallingLetter = undefined;
 				} else {
 					newRising = undefined;
 				}
