@@ -22,7 +22,7 @@ function init() {
 	scene.add( light );
 	
 	var pointLight = new THREE.PointLight( 0xeef8fc, 1, 100 );
-	pointLight.position.set( 1, 1, 3 );
+	pointLight.position.set( 2, 2, 4 );
 	scene.add( pointLight );
 	
 	var loader= new THREE.JSONLoader();
@@ -47,13 +47,17 @@ var risingLetter = null;
 var letterBuffer = [];
 
 function setLetter() {
+	letterBuffer = [];
+	risingLetter = null;
+	fallingLetter = null;
+	mesh.morphTargetInfluences[risingLetter] = 0;
+	mesh.morphTargetInfluences[fallingLetter] = 0;
 	for (i = arguments.length - 1; i >= 0; i--) {
 		console.log("Adding letter to buffer : " + arguments[i]);
 		letterBuffer.unshift(arguments[i]);
 	}
 	console.log(letterBuffer);
 	risingLetter = letterBuffer.shift();
-	fallingLetter = null;
 	console.log("First letter " + risingLetter);
 }
 
