@@ -70,6 +70,7 @@ function animate() {
 		if (risingLetter !== null) {
 			var value = mesh.morphTargetInfluences[risingLetter];
 			if (value >= 1) {
+				mesh.morphTargetInfluences[risingLetter] = 1;
 				fallingLetter = risingLetter;
 				if (letterBuffer.length > 0) {
 					risingLetter = letterBuffer.shift();
@@ -87,6 +88,7 @@ function animate() {
 		} else if (fallingLetter !== null) {
 			var value = mesh.morphTargetInfluences[fallingLetter];
 			if (value <= 0) {
+				mesh.morphTargetInfluences[fallingLetter] = 0;
 				fallingLetter = null;
 			} else {
 				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
