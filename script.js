@@ -41,27 +41,53 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
-var currentLetter;
-var currentLetterRise;
-var nextLetter;
+var fallingLetter;
+var risingLetter;
 
 var letterBuffer = [];
 
-function setLetter(a) {
-	currentLetter = a;
-	currentLetterRise = true;
+function setLetter(a[]) {
+	letterBuffer.unshift(a);
+	risingLetter = letterBuffer.shift();
 }
 
 function animate() {
 	requestAnimationFrame( animate );
 	
 	if (mesh !== undefined) {
-		if (currentLetter !== undefined) {
-			console.log(currentLetter);
+		var newFalling = fallingLetter;
+		var newRising = risingLetter;
+		if (risingLetter !== undefined) {
+			var value = mesh.morphTargetInfluences[risingLetter];
+			console.log("Rising letter - " + risingLetter + " : " + value);
+			if (value >= 1) {
+				newFalling = risingLetter;
+			} else {
+				mesh.morphTargetInfluences[risingLetter] += fplRatio;
+			}
+		}
+		if (fallingLetter !== undefined) {
+			var value = mesh.morphTargetInfluences[fallingLetter];
+			console.log("Falling letter - " + fallingLetter + " : " + value);
+			if (value <= 0) {
+				if (letterBuffer.length > 0) {
+					newRising = letterBuffer.shift();
+				} else {
+					newRising = undefined;
+				}
+			} else {
+				mesh.morphTargetInfluences[risingLetter] += fplRatio;
+			}
+		}
+		fallingLetter = newFalling;
+		risingLetter = newRising;
+		/*
+		if (fallingLetter !== undefined) {
 			var currentLetterValue = mesh.morphTargetInfluences[currentLetter];
-			console.log(currentLetterValue);
+			console.log("Rising letter - " + currentLetter + " : " + currentLetterValue);
 			if (currentLetterValue <= 0 && currentLetterRise === false) {
 				currentLetter = undefined;
+				
 			} else {
 				if (currentLetterValue >= 1) {
 					currentLetterRise = false;
@@ -74,6 +100,7 @@ function animate() {
 				mesh.morphTargetInfluences[currentLetter] = currentLetterValue;
 			}
 		}
+		*/
 	}
 	
 	renderer.render(scene, camera);
