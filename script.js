@@ -60,7 +60,7 @@ function setLetter() {
 function animate() {
 	requestAnimationFrame( animate );
 	
-	if (mesh !== null) {
+	if (mesh !== undefined) {
 		if (risingLetter !== null) {
 			console.log("Rising letter - " + risingLetter + " : " + mesh.morphTargetInfluences[risingLetter]);
 		}
