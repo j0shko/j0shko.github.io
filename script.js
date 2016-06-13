@@ -89,7 +89,7 @@ function animate() {
 			if (value <= 0) {
 				fallingLetter = null;
 			} else {
-				mesh.morphTargetInfluences -= fplRatio;
+				mesh.morphTargetInfluences[fallingLetter] -= fplRatio;
 			}
 		}
 	}
