@@ -46,12 +46,15 @@ var risingLetter;
 
 var letterBuffer = [];
 
-function setLetter(letters) {
+function setLetter() {
 	console.log("Adding letters to buffer : " + letters);
-	for (i = 0; i < letters.length; i++) {
-		letterBuffer.unshift(letters[i]);
+	for (i = 0; i < arguments.length; i++) {
+		console.log("Adding letter to buffer : " + arguments[i]);
+		letterBuffer.unshift(arguments[i]);
 	}
+	console.log(letterBuffer);
 	risingLetter = letterBuffer.shift();
+	console.log("First letter " + risingLetter);
 }
 
 function animate() {
