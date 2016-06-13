@@ -3,7 +3,7 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 var renderer = new THREE.WebGLRenderer( { antialias: true } );
 var mesh;
 
-var fplRatio = 0.2;
+var fplRatio = 0.1;
 
 init();
 animate();
@@ -49,6 +49,7 @@ var letterBuffer = [];
 
 function setLetter(a) {
 	currentLetter = a;
+	currentLetterRise = true;
 }
 
 function animate() {
@@ -56,7 +57,9 @@ function animate() {
 	
 	if (mesh !== undefined) {
 		if (currentLetter !== undefined) {
+			console.log(currentLetter);
 			var currentLetterValue = mesh.morphTargetInfluences[currentLetter];
+			console.log(currentLetterValue);
 			if (currentLetterValue <= 0 && currentLetterRise === false) {
 				currentLetter = undefined;
 			} else {
