@@ -5,8 +5,6 @@ var mesh;
 
 var fplRatio = 0.1;
 
-var implemented_letters = [];
-
 init();
 animate();
 
@@ -40,8 +38,14 @@ function init() {
 	
 	camera.position.z = 5;
 	
-	window.addEventListener( 'resize', onWindowResize, false );
+	initImplementedLetters();
 	
+	window.addEventListener( 'resize', onWindowResize, false );
+}
+
+var implemented_letters = [];
+
+function initImplementedLetters()  {
 	implemented_letters["a"] = 1;
 	implemented_letters["o"] = 2;
 	implemented_letters["u"] = 3;
