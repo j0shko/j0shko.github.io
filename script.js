@@ -54,9 +54,11 @@ function sayText(text) {
 	if (!text || 0 === text.trim().length) {
 		return;
 	}
-	console.log("Say text" + text.trim());
+	console.log("Say text : " + text.trim());
 	morphTargetsIndexes = [];
-	for (letter in text.trim().split('')) {
+	text = text.trim().split('')
+	for (i in text) {
+		letter = text[i];
 		if (letter in implemented_letters) {
 			morphTargetsIndexes.push(implemented_letters[letter]);
 		} else {
