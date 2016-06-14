@@ -54,7 +54,6 @@ function sayText(text) {
 	if (!text || 0 === text.trim().length) {
 		return;
 	}
-	console.log("Say text : " + text.trim());
 	morphTargetsIndexes = [];
 	text = text.trim().split('')
 	for (i in text) {
@@ -66,7 +65,7 @@ function sayText(text) {
 			return;
 		}
 	}
-	console.log("Morph targets : " + morphTargetsIndexes);
+	setLetter.apply(this, morphTargetsIndexes);
 }
 
 var fallingLetter = null;
