@@ -41,6 +41,13 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
+function sayText(text) {
+	if (!text || 0 === text.trim().length) {
+		return;
+	}
+	console.log("Say text" + text.trim());
+}
+
 var fallingLetter = null;
 var risingLetter = null;
 
