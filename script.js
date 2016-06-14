@@ -5,6 +5,8 @@ var mesh;
 
 var fplRatio = 0.1;
 
+var implemented_letters = [];
+
 init();
 animate();
 
@@ -39,6 +41,13 @@ function init() {
 	camera.position.z = 5;
 	
 	window.addEventListener( 'resize', onWindowResize, false );
+	
+	implemented_letters["a"] = 1;
+	implemented_letters["o"] = 2;
+	implemented_letters["u"] = 3;
+	implemented_letters["e"] = 4;
+	implemented_letters["f"] = 5;
+	implemented_letters["r"] = 6;
 }
 
 function sayText(text) {
@@ -46,6 +55,16 @@ function sayText(text) {
 		return;
 	}
 	console.log("Say text" + text.trim());
+	morphTargetsIndexes = [];
+	for (letter in text.trim().split('')) {
+		if (letter in implemented_letters) {
+			morphTargetsIndexes.push(implemented_letters[letter]);
+		} else {
+			console.log("Input contains unimplemented letter: " + letter);
+			return;
+		}
+	}
+	console.log("Morph targets : " + morphTargetsIndexes);
 }
 
 var fallingLetter = null;
