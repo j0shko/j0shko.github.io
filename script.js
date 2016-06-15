@@ -69,7 +69,7 @@ function sayText(text) {
 			return;
 		}
 	}
-	setLetter.apply(this, morphTargetsIndexes);
+	fillBuffer.apply(this, morphTargetsIndexes);
 }
 
 var fallingLetter = null;
@@ -77,7 +77,7 @@ var risingLetter = null;
 
 var letterBuffer = [];
 
-function setLetter() {
+function fillBuffer() {
 	letterBuffer = [];
 	risingLetter = null;
 	fallingLetter = null;
