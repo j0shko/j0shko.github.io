@@ -5,6 +5,8 @@ var mesh;
 
 var fplRatio = 0.1;
 
+var implemented_letters = [];
+
 init();
 animate();
 
@@ -42,8 +44,6 @@ function init() {
 	
 	window.addEventListener( 'resize', onWindowResize, false );
 }
-
-var implemented_letters = [];
 
 function initImplementedLetters()  {
 	implemented_letters["a"] = 1;
